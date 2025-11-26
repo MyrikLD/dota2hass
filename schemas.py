@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field, field_validator
 
 class DotaProvider(BaseModel):
     """Dota 2 game provider information"""
+
     appid: int
     name: str
     timestamp: int
@@ -13,6 +14,7 @@ class DotaProvider(BaseModel):
 
 class DotaPlayer(BaseModel):
     """Player state and statistics"""
+
     accountid: str
     steamid: str
     name: str
@@ -41,6 +43,7 @@ class DotaPlayer(BaseModel):
 
 class DotaMap(BaseModel):
     """Map and game state information"""
+
     name: str
     matchid: str
     game_time: int
@@ -62,6 +65,7 @@ class DotaMap(BaseModel):
 
 class DotaHero(BaseModel):
     """Hero state and attributes"""
+
     id: int | None = None
     name: str | None = None
     level: int | None = None
@@ -87,7 +91,9 @@ class DotaHero(BaseModel):
     magicimmune: bool | None = None
     hexed: bool | None = None
     muted: bool | None = None
-    break_status: bool | None = Field(None, alias="break")  # 'break' is a Python keyword
+    break_status: bool | None = Field(
+        None, alias="break"
+    )  # 'break' is a Python keyword
     has_debuff: bool | None = None
     smoked: bool | None = None
     # Items
