@@ -12,7 +12,7 @@ COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen
 
 # Copy application files
-COPY main.py schemas.py sensors.json ./
+COPY main.py schemas.py sensors.json config.py hass_tools.py ./
 
 # Expose the port
 EXPOSE 4000
