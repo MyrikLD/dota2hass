@@ -1,0 +1,156 @@
+{
+  "player_name": {
+    "name": "Dota 2 Player Name",
+    "icon": "mdi:account",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.name }}"
+  },
+  "player_kills": {
+    "name": "Dota 2 Kills",
+    "icon": "mdi:sword",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.kills }}"
+  },
+  "player_deaths": {
+    "name": "Dota 2 Deaths",
+    "icon": "mdi:skull",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.deaths }}"
+  },
+  "player_assists": {
+    "name": "Dota 2 Assists",
+    "icon": "mdi:hand-heart",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.assists }}"
+  },
+  "player_gold": {
+    "name": "Dota 2 Gold",
+    "icon": "mdi:gold",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.gold }}"
+  },
+  "player_gpm": {
+    "name": "Dota 2 GPM",
+    "icon": "mdi:speedometer",
+    "unit": "GPM",
+    "device_class": null,
+    "value_template": "{{ value_json.gpm }}"
+  },
+  "player_xpm": {
+    "name": "Dota 2 XPM",
+    "icon": "mdi:speedometer",
+    "unit": "XPM",
+    "device_class": null,
+    "value_template": "{{ value_json.xpm }}"
+  },
+  "player_last_hits": {
+    "name": "Dota 2 Last Hits",
+    "icon": "mdi:sword-cross",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.last_hits }}"
+  },
+  "player_denies": {
+    "name": "Dota 2 Denies",
+    "icon": "mdi:shield",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.denies }}"
+  },
+  "hero_name": {
+    "name": "Dota 2 Hero",
+    "icon": "mdi:account-cowboy-hat",
+    "unit": null,
+    "device_class": "enum",
+    "value_template": "{{ value_json.name }}"
+  },
+  "hero_level": {
+    "name": "Dota 2 Hero Level",
+    "icon": "mdi:arrow-up-bold",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.level }}"
+  },
+  "hero_health": {
+    "name": "Dota 2 Health",
+    "icon": "mdi:heart",
+    "unit": "HP",
+    "device_class": null,
+    "value_template": "{{ value_json.health }}"
+  },
+  "hero_health_percent": {
+    "name": "Dota 2 Health Percent",
+    "icon": "mdi:heart",
+    "unit": "%",
+    "device_class": "battery",
+    "value_template": "{{ value_json.health_percent }}"
+  },
+  "hero_mana": {
+    "name": "Dota 2 Mana",
+    "icon": "mdi:water",
+    "unit": "MP",
+    "device_class": null,
+    "value_template": "{{ value_json.mana }}"
+  },
+  "hero_mana_percent": {
+    "name": "Dota 2 Mana Percent",
+    "icon": "mdi:water",
+    "unit": "%",
+    "device_class": "battery",
+    "value_template": "{{ value_json.mana_percent }}"
+  },
+  "hero_alive": {
+    "name": "Dota 2 Hero Alive",
+    "icon": "mdi:heart-pulse",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.alive }}"
+  },
+  "hero_respawn_seconds": {
+    "name": "Dota 2 Respawn Time",
+    "icon": "mdi:timer",
+    "unit": "s",
+    "device_class": "duration",
+    "value_template": "{{ value_json.respawn_seconds }}"
+  },
+  "map_game_state": {
+    "name": "Dota 2 Game State",
+    "icon": "mdi:gamepad-variant",
+    "unit": null,
+    "device_class": "enum",
+    "value_template": "{{ value_json.game_state }}"
+  },
+  "map_clock_time": {
+    "name": "Dota 2 Clock Time",
+    "icon": "mdi:clock",
+    "unit": "s",
+    "device_class": "duration",
+    "value_template": "{{ value_json.clock_time }}"
+  },
+  "map_game_time": {
+    "name": "Dota 2 Game Time",
+    "icon": "mdi:clock",
+    "unit": "s",
+    "device_class": "duration",
+    "value_template": "{{ value_json.game_time }}"
+  },
+  "map_radiant_score": {
+    "name": "Dota 2 Radiant Score",
+    "icon": "mdi:trophy",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.radiant_score }}"
+  },
+  "map_dire_score": {
+    "name": "Dota 2 Dire Score",
+    "icon": "mdi:trophy",
+    "unit": null,
+    "device_class": null,
+    "value_template": "{{ value_json.dire_score }}"
+  }
+}

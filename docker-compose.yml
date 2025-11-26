@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  dota2hass:
+    build: .
+    container_name: dota2hass
+    ports:
+      - "4000:4000"
+    environment:
+      - MQTT_BROKER=${MQTT_BROKER:-192.168.1.160}
+      - MQTT_PORT=${MQTT_PORT:-1883}
+    restart: unless-stopped
+    networks:
+      - dota2_network
+
+networks:
+  dota2_network:
+    driver: bridge
