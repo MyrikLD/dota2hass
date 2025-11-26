@@ -1,5 +1,6 @@
 import json
 from contextlib import asynccontextmanager
+from os import environ
 from typing import Annotated
 
 import uvicorn
@@ -7,6 +8,12 @@ from aiomqtt import Client
 from fastapi import Depends, FastAPI, Request
 
 from schemas import DotaGameState
+
+# MQTT Config
+MQTT_BROKER = environ.get("MQTT_BROKER", "192.168.1.160")
+MQTT_PORT = environ.get("MQTT_PORT", 1883)
+MQTT_BASE_TOPIC = environ.get("MQTT_BASE_TOPIC", "dota2")
+HASS_DISCOVERY_PREFIX = environ.get("HASS_DISCOVERY_PREFIX", "homeassistant")
 
 
 async def mqtt_client():
@@ -29,12 +36,6 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Dota 2 GSI to MQTT", lifespan=lifespan)
-
-# MQTT Config
-MQTT_BROKER = "192.168.1.160"  # Your MQTT broker
-MQTT_PORT = 1883
-MQTT_BASE_TOPIC = "dota2"
-HASS_DISCOVERY_PREFIX = "homeassistant"
 
 
 async def setup_hass_discovery(client):
@@ -122,6 +123,6 @@ if __name__ == "__main__":
     uvicorn.run(
         app,
         host="0.0.0.0",
-        port=4000,
+        port=8000,
         log_level="info"
     )
