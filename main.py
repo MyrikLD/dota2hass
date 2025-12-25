@@ -42,7 +42,8 @@ async def receive_gamestate(request: Request, client: MqttClient):
     """
     try:
         data = await request.json()
-        if data["hero"] == {"id": 0}:
+
+        if "hero" not in data or data["hero"] == {"id": 0}:
             data["hero"] = None
         gs = DotaGameState(**data)
 
