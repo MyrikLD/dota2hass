@@ -4,7 +4,7 @@ from typing import Annotated
 
 import uvicorn
 from aiomqtt import Client
-from fastapi import Depends, FastAPI, Request
+from fastapi import Depends, FastAPI
 from starlette import status
 from starlette.responses import JSONResponse
 
@@ -33,20 +33,19 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Dota 2 GSI to MQTT", lifespan=lifespan)
+last_msg = {}
 
 
 @app.post("/")
-async def receive_gamestate(request: Request, client: MqttClient):
+async def receive_gamestate(client: MqttClient, gs: DotaGameState):
     """
     Receive game state from Dota 2
     """
+    global last_msg
+
+    last_msg = gs.model_dump(mode="json", exclude_unset=True)
+
     try:
-        data = await request.json()
-
-        if "hero" not in data or data["hero"] == {"id": 0}:
-            data["hero"] = None
-        gs = DotaGameState(**data)
-
         # Publish to MQTT
         if gs.player:
             await publish_to_mqtt(
@@ -71,6 +70,13 @@ async def receive_gamestate(request: Request, client: MqttClient):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             content={"status": "error", "message": str(e)},
         )
+
+
+@app.get("/last", response_model=DotaGameState, response_model_exclude_unset=True)
+def get_last():
+    global last_msg
+
+    return last_msg
 
 
 if __name__ == "__main__":

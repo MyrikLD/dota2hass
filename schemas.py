@@ -1,6 +1,6 @@
 from typing import Any
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 
 class DotaProvider(BaseModel):
@@ -66,7 +66,7 @@ class DotaMap(BaseModel):
 class DotaHero(BaseModel):
     """Hero state and attributes"""
 
-    id: int | None = None
+    id: int
     name: str | None = None
     level: int | None = None
     alive: bool | None = None
@@ -126,3 +126,14 @@ class DotaGameState(BaseModel):
     abilities: dict[str, Any] | None = None
     items: dict[str, Any] | None = None
     auth: dict[str, Any] | None = None
+
+    @model_validator(mode="before")
+    def validate_provider(cls, data: dict) -> dict:
+        for k, v in data.items():
+            if v == {}:
+                data[k] = None
+
+        if "hero" in data and data["hero"] == {"id": 0}:
+            data["hero"] = None
+
+        return data
