@@ -1,3 +1,4 @@
+import logging
 from contextlib import asynccontextmanager
 from typing import Annotated
 
@@ -64,6 +65,7 @@ async def receive_gamestate(request: Request, client: MqttClient):
         return {"status": "ok"}
 
     except Exception as e:
+        logging.exception(e)
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             content={"status": "error", "message": str(e)},
@@ -71,4 +73,5 @@ async def receive_gamestate(request: Request, client: MqttClient):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
